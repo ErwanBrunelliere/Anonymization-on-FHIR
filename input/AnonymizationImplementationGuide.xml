@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImplementationGuide xmlns="http://hl7.org/fhir">
+  <id value="example.fhir.uv.anonymizationig" />
+  <url value="https://example.com/ImplementationGuide/4" />
+  <version value="0.0.1" />
+  <name value="AnonymizationOnFHIR" />
+  <title value="Anonymization-on-FHIR" />
+  <status value="draft" />
+  <description value="Anonymization model for FHIR" />
+  <packageId value="anonymization.fhir.uv.implementationguide" />
+  <fhirVersion value="4.0.1" />
+  <dependsOn id="cqf">
+    <uri value="http://fhir.org/guides/cqf/common/ImplementationGuide/fhir.cqf.common" />
+    <packageId value="fhir.cqf.common" />
+    <version value="4.0.1" />
+  </dependsOn>
+  <definition>
+    <page>
+      <nameUrl value="toc.html" />
+      <title value="Table of Contents" />
+      <generation value="html" />
+      <page>
+        <nameUrl value="index.html" />
+        <title value="MyIG Home Page" />
+        <generation value="html" />
+      </page>
+    </page>
+  </definition>
+</ImplementationGuide>
