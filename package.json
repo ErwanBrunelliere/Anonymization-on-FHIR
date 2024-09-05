@@ -2,7 +2,7 @@
   "name": "anonymizationonfhir",
   "version": "0.0.1",
   "dependencies": {
-    "hl7.fhir.r5.core": "5.0.x"
+    "hl7.fhir.r5.core": "5.0.0"
   },
   "author": "XtremSanté",
   "description": "Logical model for anonymization process description.",

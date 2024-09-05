@@ -6,3 +6,4 @@ clean:
 	rm -rf ./template
 	rm -rf ./temp
 	rm -rf ./txCache
+	rm -rf ./input-cache
