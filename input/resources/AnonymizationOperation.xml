@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="AnonymizationOperation"/>
+  <url value="TODO"/>
+  <name value="AnonymizationOperation"/>
+  <title value="Anonymization Operation"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <date value="2024-09-05"/>
+  <publisher value="Xtrem Santé"/>
+  <contact>
+    <name value="Xtrem Santé - Intéropérabilité"/>
+    <telecom>
+      <system value="email"/>
+      <value value="ebrunelliere@xtremsante.fr"/>
+      <use value="work"/>
+    </telecom>
+  </contact>
+  <description value="This logical model defines an operation that will or has been processed for transforming a fhir request result in a anonymized dataset.
+  We specify by ruleset the values that we want to keep and with which operation."/>
+  <purpose value="Defines past or future anonymization operation."/>
+  <kind value="logical"/>
+  <abstract value="false"/>
+  <type value="AnonymizationOperation"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Base"/>
+  <derivation value="specialization"/>
+  <differential>
+    <element id="AnonymizationOperation">
+      <path value="AnonymizationOperation"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.purpose"/>
+      <label value="purpose"/>
+      <short value="Purpose of the operation."/>
+      <definition value="What is the goal of performing such operation."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <mustHaveValue value="true"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.request"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <example>
+        <label value="All Patient resources."/>
+        <valueString value="Patient/"/>
+      </example>
+      <example>
+        <label value="All active Patient resources."/>
+        <valueString value="Patient/?active=true"/>
+      </example>
+      <mustHaveValue value="true"/>
+      <isSummary value="true"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.resource"/>
+      <short value="Resources being processed."/>
+      <definition value="All resources (and the only ones) that will be processed in the anonymization process with specified rules."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.resource.type"/>
+      <short value="Resource type processed."/>
+      <definition value="The resource type which the following rules will be applied on."/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <mustHaveValue value="true"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.resource.rule"/>
+      <short value="Rule to process over a FHIR element."/>
+      <definition value="A rule points at a value that we want to keep the anonymized resource possibly altered by."/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="BackboneElement"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.resource.rule.target"/>
+      <short value="FHIRPath expression that points the value."/>
+      <definition value="FHIRPath expression that points the value."/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="string"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.resource.rule.alteration"/>
+      <short value="None | Random | Noize | Hash | Crypt | Generalization | Aggregation | Permutation"/>
+      <definition value="Processed used to alterate the given value"/>
+      <min value="1"/>
+      <max value="1"/>
+      <type>
+        <code value="code"/>
+      </type>
+      <isSummary value="true"/>
+    </element>
+  </differential>
+</StructureDefinition>

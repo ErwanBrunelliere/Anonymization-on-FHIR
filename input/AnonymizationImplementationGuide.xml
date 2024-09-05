@@ -16,9 +16,14 @@
   </dependsOn>
   <definition>
     <page>
-        <name value="index.html" />
-        <title value="MyIG Home Page" />
-        <generation value="html" />
-      </page>
+      <name value="index.html" />
+      <title value="Anonymization Home Page" />
+      <generation value="html" />
+    </page>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/AnonymizationOperation"/>
+      </reference>
+    </resource>
   </definition>
 </ImplementationGuide>
