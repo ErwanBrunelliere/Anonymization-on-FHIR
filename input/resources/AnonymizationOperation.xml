@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="AnonymizationOperation"/>
-  <url value="TODO"/>
+  <url value="https://build.fhir.org/ig/ErwanBrunelliere/Anonymization-on-FHIR/StructureDefinition/AnonymizationOperation"/>
+  <version value="0.0.1"/>
   <name value="AnonymizationOperation"/>
   <title value="Anonymization Operation"/>
   <status value="draft"/>
   <experimental value="true"/>
-  <date value="2024-09-05"/>
+  <date value="2024-09-06"/>
   <publisher value="Xtrem Santé"/>
   <contact>
-    <name value="Xtrem Santé - Intéropérabilité"/>
+    <name value="Xtrem Santé - Interop"/>
+    <telecom>
+      <system value="email"/>
+      <value value="dev.interop@xtremsante.fr"/>
+      <use value="work"/>
+      <rank value="1"/>
+    </telecom>
+  </contact>
+  <contact>
+    <name value="Erwan Brunellière"/>
     <telecom>
       <system value="email"/>
       <value value="ebrunelliere@xtremsante.fr"/>
       <use value="work"/>
+      <rank value="2"/>
     </telecom>
   </contact>
-  <description value="This logical model defines an operation that will or has been processed for transforming a fhir request result in a anonymized dataset.
-  We specify by ruleset the values that we want to keep and with which operation."/>
+  <description value="This logical model defines an operation that will or has been processed for transforming a fhir request result in a anonymized dataset. We specify by ruleset the values that we want to keep and with which operation."/>
   <purpose value="Defines past or future anonymization operation."/>
+  <fhirVersion value="5.0.0"/>
   <kind value="logical"/>
   <abstract value="false"/>
   <type value="AnonymizationOperation"/>
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Base"/>
   <derivation value="specialization"/>
   <differential>
-    <element id="AnonymizationOperation">
+    <element>
       <path value="AnonymizationOperation"/>
     </element>
     <element>
       <path value="AnonymizationOperation.purpose"/>
-      <label value="purpose"/>
       <short value="Purpose of the operation."/>
-      <definition value="What is the goal of performing such operation."/>
+      <definition value="Defines what is the goal of this operation."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -59,9 +69,9 @@
       <isSummary value="true"/>
     </element>
     <element>
-      <path value="AnonymizationOperation.resource"/>
-      <short value="Resources being processed."/>
-      <definition value="All resources (and the only ones) that will be processed in the anonymization process with specified rules."/>
+      <path value="AnonymizationOperation.element"/>
+      <short value="Values kept by the anonymization (and only ones)."/>
+      <definition value="Values that the anonymization process will keep and possibly modify with the specified rules."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -70,48 +80,109 @@
       <isSummary value="true"/>
     </element>
     <element>
-      <path value="AnonymizationOperation.resource.type"/>
-      <short value="Resource type processed."/>
-      <definition value="The resource type which the following rules will be applied on."/>
+      <path value="AnonymizationOperation.element.path"/>
+      <short value="FHIRPath pointing the value."/>
+      <definition value="A FHIRPath string that points the value being kept and might be modified."/>
       <min value="1"/>
       <max value="1"/>
       <type>
         <code value="string"/>
       </type>
       <mustHaveValue value="true"/>
-    </element>
-    <element>
-      <path value="AnonymizationOperation.resource.rule"/>
-      <short value="Rule to process over a FHIR element."/>
-      <definition value="A rule points at a value that we want to keep the anonymized resource possibly altered by."/>
-      <min value="0"/>
-      <max value="*"/>
-      <type>
-        <code value="BackboneElement"/>
-      </type>
       <isSummary value="true"/>
     </element>
     <element>
-      <path value="AnonymizationOperation.resource.rule.target"/>
-      <short value="FHIRPath expression that points the value."/>
-      <definition value="FHIRPath expression that points the value."/>
-      <min value="1"/>
+      <path value="AnonymizationOperation.element.defaultValue[x]"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="url"/>
+      </type>
+      <type>
+        <code value="uri"/>
+      </type>
+      <type>
+        <code value="string"/>
+      </type>
+      <type>
+        <code value="code"/>
+      </type>
+      <type>
+        <code value="markdown"/>
+      </type>
+      <type>
+        <code value="id"/>
+      </type>
+      <type>
+        <code value="canonical"/>
+      </type>
+      <type>
+        <code value="positiveInt"/>
+      </type>
+      <type>
+        <code value="integer"/>
+      </type>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <type>
+        <code value="dateTime"/>
+      </type>
+      <type>
+        <code value="unsignedInt"/>
+      </type>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.element.noise[x]"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="integer"/>
+      </type>
+      <type>
+        <code value="decimal"/>
+      </type>
+      <type>
+        <code value="date"/>
+      </type>
+      <type>
+        <code value="time"/>
+      </type>
+      <type>
+        <code value="instant"/>
+      </type>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.element.shuffle"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.element.encryptionAlgorithm"/>
+      <min value="0"/>
       <max value="1"/>
       <type>
         <code value="string"/>
       </type>
-      <isSummary value="true"/>
     </element>
     <element>
-      <path value="AnonymizationOperation.resource.rule.alteration"/>
-      <short value="None | Random | Noize | Hash | Crypt | Generalization | Aggregation | Permutation"/>
-      <definition value="Processed used to alterate the given value"/>
-      <min value="1"/>
+      <path value="AnonymizationOperation.element.hashFunction"/>
+      <min value="0"/>
       <max value="1"/>
       <type>
-        <code value="code"/>
+        <code value="string"/>
       </type>
-      <isSummary value="true"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.element.rankRule"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
     </element>
   </differential>
 </StructureDefinition>

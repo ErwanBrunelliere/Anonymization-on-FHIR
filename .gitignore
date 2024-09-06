@@ -4,3 +4,5 @@ txCache/
 output/
 temp/
 input-cache/
+/vendor/
+.idea/

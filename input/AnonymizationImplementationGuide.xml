@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ImplementationGuide xmlns="http://hl7.org/fhir">
-  <id value="example.fhir.uv.anonymizationig" />
-  <url value="https://example.com/ImplementationGuide/4" />
-  <version value="0.0.1" />
-  <name value="AnonymizationOnFHIR" />
-  <title value="Anonymization-on-FHIR" />
-  <status value="draft" />
-  <description value="Anonymization model for FHIR" />
-  <packageId value="anonymization.fhir.uv.implementationguide" />
-  <fhirVersion value="5.0.0" />
-  <dependsOn id="r5">
-    <uri value="http://hl7.org/fhir/ImplementationGuide/fhir" />
-    <packageId value="hl7.fhir.r5.core" />
-    <version value="5.0.0" />
+  <id value="buid.fhir.ig.anonymizationonfhir.ig"/>
+  <url value="https://build.fhir.org/ig/ErwanBrunelliere/Anonymization-on-FHIR/ImplementationGuide/buid.fhir.ig.anonymizationonfhir.ig"/>
+  <version value="0.0.1"/>
+  <name value="AnonymizationOnFhir"/>
+  <title value="Anonymization-on-FHIR"/>
+  <status value="draft"/>
+  <contact>
+    <name value="Xtrem Santé - Interop"/>
+    <telecom>
+      <system value="email"/>
+      <value value="dev.interop@xtremsante.fr"/>
+      <use value="work"/>
+      <rank value="1"/>
+    </telecom>
+  </contact>
+  <contact>
+    <name value="Erwan Brunellière"/>
+    <telecom>
+      <system value="email"/>
+      <value value="ebrunelliere@xtremsante.fr"/>
+      <use value="work"/>
+      <rank value="2"/>
+    </telecom>
+  </contact>
+  <description value="Anonymization model for FHIR"/>
+  <packageId value="anonymizationonfhir"/>
+  <fhirVersion value="5.0.0"/>
+  <dependsOn>
+    <uri value="http://hl7.org/fhir/ImplementationGuide/fhir"/>
+    <packageId value="hl7.fhir.r5.core"/>
+    <version value="5.0.0"/>
   </dependsOn>
   <definition>
-    <page>
-      <name value="index.html" />
-      <title value="Anonymization Home Page" />
-      <generation value="html" />
-    </page>
     <resource>
       <reference>
         <reference value="StructureDefinition/AnonymizationOperation"/>
       </reference>
     </resource>
+    <page>
+      <name value="index.html"/>
+      <title value="Anonymization home page"/>
+      <generation value="html"/>
+    </page>
   </definition>
 </ImplementationGuide>
