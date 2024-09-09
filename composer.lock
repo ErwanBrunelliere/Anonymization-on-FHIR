@@ -1,0 +1,71 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "3eca9bf59df023ca4737768b92f13b28",
+    "packages": [
+        {
+            "name": "openxtrem/fhir-core",
+            "version": "4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/openxtrem_public/components/fhir-core.git",
+                "reference": "4ec542299344a2e337ed4575507061fdd802c5f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/openxtrem_public%2Fcomponents%2Ffhir-core/repository/archive.zip?sha=4ec542299344a2e337ed4575507061fdd802c5f8",
+                "reference": "4ec542299344a2e337ed4575507061fdd802c5f8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-dom": "*",
+                "ext-json": "*",
+                "php": "8.2.* | 8.3.*"
+            },
+            "require-dev": {
+                "openxtrem/coding-standard": "^1.0.0",
+                "phpstan/phpstan": "1.7.*",
+                "phpunit/phpunit": "9.5.*",
+                "symfony/http-client": "^6.4",
+                "symfony/http-foundation": "^6.4",
+                "symfony/mime": "^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ox\\Components\\FHIRCore\\": "src/classes",
+                    "Ox\\Components\\FHIRCore\\Tests\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Xtrem Santé - Interopérabilité",
+                    "email": "dev.interop@xtremsante.fr"
+                }
+            ],
+            "homepage": "https://www.openxtrem.com/",
+            "support": {
+                "issues": "https://gitlab.com/openxtrem_public/components/fhir-core/-/issues",
+                "source": "https://gitlab.com/openxtrem_public/components/fhir-core/-/tree/4.0.4"
+            },
+            "time": "2024-08-27T16:57:38+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

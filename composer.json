@@ -1,0 +1,11 @@
+{
+    "name": "openxtrem/anonymization-on-fhir",
+    "require": {
+        "openxtrem/fhir-core": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Openxtrem\\AnonymizationOnFhir\\": "src/"
+        }
+    }
+}
