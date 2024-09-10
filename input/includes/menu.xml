@@ -2,26 +2,8 @@
   <li><a href="index.html">IG Home</a></li>
   <li><a href="toc.html">Table of Contents</a></li>
   <li><a href="StructureDefinition-AnonymizationOperation.html">AnonymizationOperation</a></li>
-  <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">MyIg Background<b class="caret">
-      </b>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="background.html">Background</a>
-      </li>
-    </ul>
-  </li>
-  <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Specification<b class="caret">
-      </b>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="spec.html">Detailed Specification</a>
-      </li>
-    </ul>
-  </li>
+  <li><a href="background.html">Background</a></li>
+  <li><a href="spec.html">Detailed Specification</a></li>
   <li><a href="artifacts.html">Artifact Index</a></li>
   <li class="dropdown">
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">Support<b class="caret">

@@ -1,0 +1,13 @@
+@startuml
+!theme mars
+skinparam backgroundColor #00000000
+title
+  | id | Age | Disease |
+  | 1 | 13 | B |
+  | 2 | 15 | A |
+  | 3 | 34 | B |
+  | 4 | 12 | A |
+  | 5 | 44 | B |
+  | 6 | 9  | A |
+end title
+@enduml

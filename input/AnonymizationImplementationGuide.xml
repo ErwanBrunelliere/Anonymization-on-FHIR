@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ImplementationGuide xmlns="http://hl7.org/fhir">
-  <id value="buid.fhir.ig.anonymizationonfhir.ig"/>
-  <url value="https://build.fhir.org/ig/ErwanBrunelliere/Anonymization-on-FHIR/ImplementationGuide/buid.fhir.ig.anonymizationonfhir.ig"/>
+  <id value="ig"/>
+  <url value="https://build.fhir.org/ig/ErwanBrunelliere/Anonymization-on-FHIR/ImplementationGuide/ig"/>
   <version value="0.0.1"/>
   <name value="AnonymizationOnFhir"/>
   <title value="Anonymization-on-FHIR"/>
@@ -42,6 +42,21 @@
       <name value="index.html"/>
       <title value="Anonymization home page"/>
       <generation value="html"/>
+      <page>
+        <name value="downloads.html"/>
+        <title value="Anonymization downloads page"/>
+        <generation value="html"/>
+      </page>
+      <page>
+        <name value="background.html"/>
+        <title value="Anonymization background page"/>
+        <generation value="html"/>
+      </page>
+      <page>
+        <name value="spec.html"/>
+        <title value="Anonymization spec page"/>
+        <generation value="html"/>
+      </page>
     </page>
   </definition>
 </ImplementationGuide>

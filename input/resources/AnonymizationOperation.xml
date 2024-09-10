@@ -7,7 +7,7 @@
   <title value="Anonymization Operation"/>
   <status value="draft"/>
   <experimental value="true"/>
-  <date value="2024-09-06"/>
+  <date value="2024-09-10"/>
   <publisher value="Xtrem Santé"/>
   <contact>
     <name value="Xtrem Santé - Interop"/>
@@ -93,6 +93,8 @@
     </element>
     <element>
       <path value="AnonymizationOperation.element.defaultValue[x]"/>
+      <short value="A new value that will be taken by all of the elements."/>
+      <definition value="A new value that will be taken by all of the elements. Should be used alone."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -134,6 +136,8 @@
     </element>
     <element>
       <path value="AnonymizationOperation.element.noise[x]"/>
+      <short value="Noise added to values."/>
+      <definition value="A noise that will be applied randomly on all elements."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -154,14 +158,19 @@
     </element>
     <element>
       <path value="AnonymizationOperation.element.shuffle"/>
+      <short value="Shuffle elements from resources."/>
+      <definition value="All elements will be shuffled, none of the resources will keep their original value, but will get one from another resource."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="boolean"/>
       </type>
+      <defaultValueBoolean value="false"/>
     </element>
     <element>
       <path value="AnonymizationOperation.element.encryptionAlgorithm"/>
+      <short value="Encryption algorithm."/>
+      <definition value="Encryption algorithm supported, depending from the anonymizer."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -170,6 +179,8 @@
     </element>
     <element>
       <path value="AnonymizationOperation.element.hashFunction"/>
+      <short value="Hashing algorithm."/>
+      <definition value="Hashing algorithm supported, depending from the anonymizer."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -177,7 +188,43 @@
       </type>
     </element>
     <element>
-      <path value="AnonymizationOperation.element.rankRule"/>
+      <path value="AnonymizationOperation.element.rank"/>
+      <short value="Defines if the value is replaced with a not related id."/>
+      <definition value="Every value will get unique value unrelated from his original value."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.element.aggregation"/>
+      <short value="Defines an aggregation, automatic with a k value or with a ConceptMap."/>
+      <definition value="If the value is a int (k), ll the value will be in a group with at least k value. If the value is a ConceptMap, all values will get their target value."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="unsignedInt"/>
+      </type>
+      <type>
+        <code value="ConceptMap"/>
+      </type>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.element.diversity"/>
+      <short value="Defines l diversity for the element."/>
+      <definition value="In addition with the k-anonymization (aggregation) of another element, the l-diversity indicate how much of "/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="unsignedInt"/>
+      </type>
+      <defaultValueUnsignedInt value="0"/>
+    </element>
+    <element>
+      <path value="AnonymizationOperation.element.closeness"/>
+      <short value="Defines the use of t-closeness."/>
+      <definition value="If t-closeness is set, each group from k-anonymization will get the same distribution as the whole dataset."/>
       <min value="0"/>
       <max value="1"/>
       <type>

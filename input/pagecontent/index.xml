@@ -1,15 +1,19 @@
-<div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R5/fhir-single.xsd">
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R5/fhir-single.xsd">
   <!-- The spaces between the open and close "a" tag are mandatory.  (Cuz HTML renderers are dumb...) -->
   <a name="intro"> </a>
   <h3>Introduction</h3>
-	<p>
-    What is this IG about (in patient/non-expert friendly terms).
+  <p>
+    This implementation guide is about to help data processing responsible to defines how his FHIR data will be processed.
+    It also helps him sharing his process and reasons to data consumers.
+
+    The main resource AnonymizationOperation defines all operations that can be done on FHIR resources.
   </p>
-	<a name="technical"> </a>
-	<h3>Technical Overview</h3>
-	<p>
-    Additional detail/context setting for those who have significant background in the domain.  (Try to make as understandable as you can, but
-    set important context).
+  <a name="technical"> </a>
+  <h3>Technical Overview</h3>
+  <p>
+    This IG is meant to be used by an Anonymization Tool. This tool should be able to fetch data from a FHIR endpoint or a least files,
+    perform alterations on values and perform aggregations on datasets. This anonymization tool should be able to generate altered FHIR resources.
   </p>
   <a name="walkthrough"> </a>
   <p>
@@ -17,14 +21,23 @@
   </p>
   <ul>
     <li>
-      <a href="background.html">Background</a> - provides business context for the implementation guide and information that implementers should be
-      familiar with before reading the remainder of the IG.  There could be multiple pages for this.
+      <a href="background.html">Background</a>
+      - provides business context for the implementation guide and information that implementers should be
+      familiar with before reading the remainder of the IG. There could be multiple pages for this.
     </li>
     <li>
-      <a href="spec.html">Detailed Specification</a> - The actual stuff implementers are expected to do.  (Could be multiple pages for this.)
+      <a href="spec.html">Detailed Specification</a>
+      - The actual stuff implementers are expected to do. (Could be multiple pages for this.)
     </li>
     <li>
-      <a href="downloads.html">Downloads</a> - Allows downloading a copy of this implementation guide and other useful information
+      <a href="downloads.html">Downloads</a>
+      - Allows downloading a copy of this implementation guide and other useful information
     </li>
   </ul>
+  <a name="usage"> </a>
+  <h3>AnonymizationOperation usage</h3>
+  <figure>
+    {% include usage.svg %}
+    <figcaption>Usage diagram</figcaption>
+  </figure>
 </div>

@@ -1,0 +1,22 @@
+@startuml
+!theme mars
+skinparam backgroundColor #00000000
+actor "Processing Responsible" as PR
+participant AnonymizationTool
+database Original
+database Anonymized
+actor "Data Analyst" as DA
+
+PR -> AnonymizationTool ++ : **AnonymizationOperation**
+AnonymizationTool -> Original : performRequest
+Original --> AnonymizationTool : send resources
+AnonymizationTool -> AnonymizationTool
+AnonymizationTool -> PR -- : Anonymized resources
+
+PR -> Anonymized : Publish resources
+PR -> Anonymized : **AnonymizationOperation**
+
+DA -> Anonymized : get data
+Anonymized --> DA : **AnonymizationOperation**
+Anonymized --> DA : Anonymized resources
+@enduml

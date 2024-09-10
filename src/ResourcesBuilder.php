@@ -21,11 +21,13 @@ use Ox\Components\FHIRCore\Model\R5\Datatypes\FHIRInstant;
 use Ox\Components\FHIRCore\Model\R5\Datatypes\FHIRInteger;
 use Ox\Components\FHIRCore\Model\R5\Datatypes\FHIRString;
 use Ox\Components\FHIRCore\Model\R5\Datatypes\FHIRTime;
+use Ox\Components\FHIRCore\Model\R5\Datatypes\FHIRUnsignedInt;
 use Ox\Components\FHIRCore\Model\R5\Resources\Backbone\FHIRImplementationGuideDefinition;
 use Ox\Components\FHIRCore\Model\R5\Resources\Backbone\FHIRImplementationGuideDefinitionPage;
 use Ox\Components\FHIRCore\Model\R5\Resources\Backbone\FHIRImplementationGuideDefinitionResource;
 use Ox\Components\FHIRCore\Model\R5\Resources\Backbone\FHIRImplementationGuideDependsOn;
 use Ox\Components\FHIRCore\Model\R5\Resources\Backbone\FHIRStructureDefinitionDifferential;
+use Ox\Components\FHIRCore\Model\R5\Resources\FHIRConceptMap;
 use Ox\Components\FHIRCore\Model\R5\Resources\FHIRImplementationGuide;
 use Ox\Components\FHIRCore\Model\R5\Resources\FHIRStructureDefinition;
 
@@ -66,11 +68,26 @@ class ResourcesBuilder
         $canonical = self::CANONICAL;
 
         $id = 'buid.fhir.ig.anonymizationonfhir.ig';
+        $id = 'ig';
 
         $index_page = (new FHIRImplementationGuideDefinitionPage())
             ->setName('index.html')
             ->setTitle('Anonymization home page')
-            ->setGeneration('html');
+            ->setGeneration('html')
+            ->setPage(
+                (new FHIRImplementationGuideDefinitionPage())
+                    ->setName('downloads.html')
+                    ->setTitle('Anonymization downloads page')
+                    ->setGeneration('html'),
+                (new FHIRImplementationGuideDefinitionPage())
+                    ->setName('background.html')
+                    ->setTitle('Anonymization background page')
+                    ->setGeneration('html'),
+                (new FHIRImplementationGuideDefinitionPage())
+                    ->setName('spec.html')
+                    ->setTitle('Anonymization spec page')
+                    ->setGeneration('html'),
+            );
 
         $IG = (new FHIRImplementationGuide())
             ->setId($id)
@@ -183,6 +200,9 @@ class ResourcesBuilder
             $this->getEncryptionRule($element->getPath()->getValue()),
             $this->getHashRule($element->getPath()->getValue()),
             $this->getRankRule($element->getPath()->getValue()),
+            $this->getAggregationRule($element->getPath()->getValue()),
+            $this->getDiversityRule($element->getPath()->getValue()),
+            $this->getClosenessRule($element->getPath()->getValue()),
         );
 
         return $st;
@@ -199,6 +219,8 @@ class ResourcesBuilder
     private function getDefaultValueRule(string $parent_path): FHIRElementDefinitionInterface
     {
         return (new FHIRElementDefinition())
+            ->setShort('A new value that will be taken by all of the elements.')
+            ->setDefinition('A new value that will be taken by all of the elements. Should be used alone.')
             ->setPath("$parent_path.defaultValue[x]")
             ->setMin(0)
             ->setMax('1')
@@ -220,6 +242,8 @@ class ResourcesBuilder
 
         return (new FHIRElementDefinition())
             ->setPath("$parent_class.noise[x]")
+            ->setShort("Noise added to values.")
+            ->setDefinition("A noise that will be applied randomly on all elements.")
             ->setMin(0)
             ->setMax('1')
             ->setType(...array_map(fn ($class) => (new FHIRElementDefinitionType())->setCode($class), $types));
@@ -229,15 +253,20 @@ class ResourcesBuilder
     {
         return (new FHIRElementDefinition())
             ->setPath("$parent_class.shuffle")
+            ->setShort("Shuffle elements from resources.")
+            ->setDefinition("All elements will be shuffled, none of the resources will keep their original value, but will get one from another resource.")
             ->setMin(0)
             ->setMax('1')
-            ->setType((new FHIRElementDefinitionType())->setCode(FHIRBoolean::RESOURCE_NAME));
+            ->setType((new FHIRElementDefinitionType())->setCode(FHIRBoolean::RESOURCE_NAME))
+            ->setDefaultValue((new FHIRBoolean())->setValue(false));
     }
 
     private function getEncryptionRule(string $parent_class): FHIRElementDefinitionInterface
     {
         return (new FHIRElementDefinition())
             ->setPath("$parent_class.encryptionAlgorithm")
+            ->setShort('Encryption algorithm.')
+            ->setDefinition('Encryption algorithm supported, depending from the anonymizer.')
             ->setMin(0)
             ->setMax('1')
             ->setType((new FHIRElementDefinitionType())->setCode(FHIRString::RESOURCE_NAME));
@@ -247,6 +276,8 @@ class ResourcesBuilder
     {
         return (new FHIRElementDefinition())
             ->setPath("$parent_class.hashFunction")
+            ->setShort('Hashing algorithm.')
+            ->setDefinition('Hashing algorithm supported, depending from the anonymizer.')
             ->setMin(0)
             ->setMax('1')
             ->setType((new FHIRElementDefinitionType())->setCode(FHIRString::RESOURCE_NAME));
@@ -255,7 +286,46 @@ class ResourcesBuilder
     private function getRankRule(string $parent_class): FHIRElementDefinitionInterface
     {
         return (new FHIRElementDefinition())
-            ->setPath("$parent_class.rankRule")
+            ->setPath("$parent_class.rank")
+            ->setShort('Defines if the value is replaced with a not related id.')
+            ->setDefinition('Every value will get unique value unrelated from his original value.')
+            ->setMin(0)
+            ->setMax('1')
+            ->setType((new FHIRElementDefinitionType())->setCode(FHIRBoolean::RESOURCE_NAME));
+    }
+
+    private function getAggregationRule(string $parent_class): FHIRElementDefinitionInterface
+    {
+        return (new FHIRElementDefinition())
+            ->setPath("$parent_class.aggregation")
+            ->setShort('Defines an aggregation, automatic with a k value or with a ConceptMap.')
+            ->setDefinition('If the value is a int (k), ll the value will be in a group with at least k value. If the value is a ConceptMap, all values will get their target value.')
+            ->setMin(0)
+            ->setMax('1')
+            ->setType(
+                (new FHIRElementDefinitionType())->setCode(FHIRUnsignedInt::RESOURCE_NAME),
+                (new FHIRElementDefinitionType())->setCode(FHIRConceptMap::RESOURCE_NAME),
+            );
+    }
+
+    private function getDiversityRule(string $parent_class): FHIRElementDefinitionInterface
+    {
+        return (new FHIRElementDefinition())
+            ->setPath("$parent_class.diversity")
+            ->setShort("Defines l diversity for the element.")
+            ->setDefinition('In addition with the k-anonymization (aggregation) of another element, the l-diversity indicate how much of ')
+            ->setMin(0)
+            ->setMax('1')
+            ->setType((new FHIRElementDefinitionType())->setCode(FHIRUnsignedInt::RESOURCE_NAME))
+            ->setDefaultValue((new FHIRUnsignedInt())->setValue(0));
+    }
+
+    private function getClosenessRule(string $parent_class): FHIRElementDefinitionInterface
+    {
+        return (new FHIRElementDefinition())
+            ->setShort('Defines the use of t-closeness.')
+            ->setDefinition('If t-closeness is set, each group from k-anonymization will get the same distribution as the whole dataset.')
+            ->setPath("$parent_class.closeness")
             ->setMin(0)
             ->setMax('1')
             ->setType((new FHIRElementDefinitionType())->setCode(FHIRBoolean::RESOURCE_NAME));
