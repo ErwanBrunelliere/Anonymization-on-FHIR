@@ -1,0 +1,30 @@
+#xtrem-sante-logo {
+  position: absolute;
+  height: 100%;
+}
+
+#xtrem-sante-logo img {
+  height: 100%;
+}
+
+a#xtrem-softway-logo img {
+  width: 25%;
+}
+
+@font-face {
+  font-family: "Tahoma";
+  src:
+    url('../fonts/tahoma.ttf')
+}
+
+:root {
+  --footer-container-bg-color: #79378c; /* 4. Footer container color */
+  --navbar-bg-color: #79378c;
+  --btn-hover-color: #b272ac;
+  --link-hover-color: #b272ac;
+  --publish-box-bg-color: #ffff89;
+}
+
+p, li {
+  font-family: "Tahoma", sans-serif;
+}

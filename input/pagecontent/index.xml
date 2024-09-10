@@ -40,4 +40,10 @@
     {% include usage.svg %}
     <figcaption>Usage diagram</figcaption>
   </figure>
+  <h3>Publisher</h3>
+  <a id="xtrem-softway-logo" href="https://openxtrem.com">
+    <img src="Logo_XTREM SANTE-Groupe SWM_rgb-01.svg" />
+  </a>
+  <h4>Contact</h4>
+  <p>ebrunelliere@xtremsante.fr<br/>dev.interop@xtremsante.fr</p>
 </div>

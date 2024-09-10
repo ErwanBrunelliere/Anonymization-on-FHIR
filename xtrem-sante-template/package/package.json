@@ -1,0 +1,13 @@
+{
+  "name": "xtrem.sante.ig-template",
+  "type": "fhir.template",
+  "license": "CC0-1.0",
+  "description": "Template for XtremSanté",
+  "author": "Xtrem Santé",
+  "canonical": "https://www.openxtrem.com/fhir/templates/xtrem.sante.ig-template",
+  "base": "fhir.base.template",
+  "dependencies": {
+    "fhir.base.template": "current"
+  },
+  "version": "0.0.1"
+}

@@ -5,12 +5,12 @@ actor "Processing Responsible" as PR
 participant AnonymizationTool
 database Original
 database Anonymized
-actor "Data Analyst" as DA
+actor "Data Consumer" as DA
 
 PR -> AnonymizationTool ++ : **AnonymizationOperation**
 AnonymizationTool -> Original : performRequest
 Original --> AnonymizationTool : send resources
-AnonymizationTool -> AnonymizationTool
+AnonymizationTool -> AnonymizationTool: processing
 AnonymizationTool -> PR -- : Anonymized resources
 
 PR -> Anonymized : Publish resources
